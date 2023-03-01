@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8084:8080
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: adminerdb
+      MYSQL_USER: carlos_adminer
+      MYSQL_PASSWORD: carlos
+      MYSQL_RANDOM_ROOT_PASSWORD: carlos
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  adminer:
+  db:

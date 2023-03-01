@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8083:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: carlos_wp
+      WORDPRESS_DB_PASSWORD: carlos
+      WORDPRESS_DB_NAME: carlosdb
+    volumes:
+      - wordpress:/var/www/html/wp-content
+
+  db:
+    container_name: servidor_mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: carlosdb
+      MYSQL_USER: carlos_wp
+      MYSQL_PASSWORD: carlos
+      MYSQL_RANDOM_ROOT_PASSWORD: carlos
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:

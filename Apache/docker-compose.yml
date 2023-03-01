@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  apache:
+    image: ubuntu/apache2:latest
+    container_name: apache2-container
+    ports:
+    - '8080:80'
+    volumes:
+    - ./website:/usr/local/apache2/htdocs
